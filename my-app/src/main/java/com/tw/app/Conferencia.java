@@ -9,7 +9,7 @@ import java.util.List;
 import com.tw.app.util.Constant;
 
 /**
- * @author carlo
+ * @author carlos
  *
  */
 public class Conferencia {
@@ -27,11 +27,11 @@ public class Conferencia {
     public String toString() {
         StringBuilder str = new StringBuilder();
         
-        str.append("Conference Schedule:" + Constant.NEW_LINE + Constant.NEW_LINE);
+        str.append("Conference Schedule:" + Constant.NOVA_LINHA + Constant.NOVA_LINHA);
         for (int i = 0; i < tracks.size(); i++) {
-            str.append("Track " + (i + 1) + ":" + Constant.NEW_LINE);
+            str.append("Track " + (i + 1) + ":" + Constant.NOVA_LINHA);
             str.append(tracks.get(i));
-            str.append(Constant.NEW_LINE);
+            str.append(Constant.NOVA_LINHA);
         }
         return str.toString();
     }

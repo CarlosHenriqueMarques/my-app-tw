@@ -1,7 +1,7 @@
 # my-app-tw
 Aplicação teste da Thoughtworks
 
-###Desafio
+#Desafio
 Conference Track Management
 
 You are planning a big programming conference and have received many proposals which have passed the initial screen process but you're having trouble fitting them into the time constraints of the day -- there are so many possibilities! So you write a program to do it for you.
@@ -63,12 +63,12 @@ Track 2:
 04:00PM Rails for Python Developers lightning
 05:00PM Networking Event
 
-###Requisitos para o buid
+#Requisitos para o buid
 - Java 1.8
 - Maven (Para realizar o build)
 - Junit (Está incluso no pom do maven)
 
-###Como fazer o build
+#Como fazer o build
 ```bash
 cd /path/project-raiz/pasta-onde-fica-pom
 mvn package
@@ -81,7 +81,7 @@ cd/Desktop/TW/my-app-tw/my-app
 mvn package
 ```
 
-###Como fazer executar
+#Como fazer executar
 ```bash
 cd /path/project-raiz/pasta-onde-fica-pom/target
 java -jar my-app-1.0-SNAPSHOT.jar
@@ -91,3 +91,21 @@ Exemplo :
 cd /path/project-raiz/pasta-onde-fica-pom/target
 java -jar my-app-1.0-SNAPSHOT.jar
 ```
+
+#Como foi pensado
+Para desenvolver o desafio eu separei inicialmente a solução em 'dominios' classes
+
+#App
+A classe onde se encontra o static void main, que é responsável por 'escutar' o seu comando e ler o arquivo desejado.
+
+#ConferenciaAgenda
+A classe
+
+#Conferencia
+A classe conferencia só retorna o cabeçalho ou o início da agenda da conferência
+#Track
+Uma conferência possuem uma ou mais track e cada track tem 'vagas' para adicionar os eventos da conferência, essa classe foi criada para facilitar na organização do evento.
+#Vaga
+A classe vaga ficou responsável por controlar o tempo de inicio e fim (Por exemplo iniciar em 9h e finalizar as 17h), essa classe também faz parte do conjunto de track, ou seja um track terá várias 'vagas' para ser alocado os eventos.
+#Evento
+A classe evento é responsável por 'ler' e interpretar o evento da conferência

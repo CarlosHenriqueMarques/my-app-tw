@@ -1,7 +1,7 @@
 package com.tw.app;
 
 public enum Duracao {
-    MINUTES(1, "min"), LIGHTENING(5, "lightning");
+    MINUTOS(1, "min"), LIGHTENING(5, "lightning");
 
     private int factor;
     private String stringRepresentation;

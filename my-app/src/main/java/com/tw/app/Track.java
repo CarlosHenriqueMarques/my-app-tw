@@ -5,21 +5,21 @@ import java.util.List;
 
 public class Track {
 	
-    private List<Vaga> slots;
+    private List<Vaga> sessoes;
 
     public Track() {
-        slots = new ArrayList<Vaga>();
+        sessoes = new ArrayList<Vaga>();
     }
 
-    public void addSlot(Vaga slot) {
-        slots.add(slot);
+    public void addSessao(Vaga slot) {
+        sessoes.add(slot);
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (Vaga slot : slots) {
-            str.append(slot);
+        for (Vaga sessao : sessoes) {
+            str.append(sessao);
         }
         return str.toString();
     }

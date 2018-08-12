@@ -10,4 +10,3 @@ com\tw\app\Vaga.class
 com\tw\app\App.class
 com\tw\app\util\Logger.class
 com\tw\app\util\Logger$Level.class
-com\tw\app\Event.class

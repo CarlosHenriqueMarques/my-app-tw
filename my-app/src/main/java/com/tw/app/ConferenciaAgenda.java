@@ -15,86 +15,90 @@ public class ConferenciaAgenda {
 	}
 
 	private static Logger logger = Logger.getLogger();
-	
+
 	public Conferencia schedule(BufferedReader input) throws IOException {
-        List<Event> events = new ArrayList<Event>();
-        for (String line; (line = input.readLine()) != null;) {
-            line = line.trim();
-            Event event = parseInputLine(line);
-            if (event == null) {
-                continue;
-            }
-            events.add(event);
-        }
+		List<Evento> eventos = new ArrayList<Evento>();
+		for (String linha; (linha = input.readLine()) != null;) {
+			linha = linha.trim();
+			Evento evento = parseInputLinha(linha);
+			if (evento == null) {
+				continue;
+			}
+			eventos.add(evento);
+		}
 
-        Conferencia conference = new Conferencia();
-        while (events.size() != 0) {
-        	Vaga morningSlot = new Vaga(Config.MORNING_SLOT_DURATION, Config.MORNING_SLOT_START_TIME);
-            fillSlotWithEvents(morningSlot, events);
-            Vaga lunchSlot = new Vaga(Config.LUNCH_SLOT_DURATION, Config.LUNCH_SLOT_START_TIME);
-            lunchSlot.addEvento(new Event("Lunch", Config.LUNCH_SLOT_DURATION, Duracao.MINUTES));
-            
-            Vaga afternoonSlot = new Vaga(Config.AFTERNOON_SLOT_DURATION, Config.AFTERNOON_SLOT_START_TIME);
-            fillSlotWithEvents(afternoonSlot, events);
-            Event networkingEvent = new Event(Config.NETWORKING_EVENT_NAME, Config.NETWORKING_EVENT_DURATION,
-            		Config.NETWORKING_EVENT_DURATION_UNIT);
-            Vaga networkingSlot = new Vaga(networkingEvent.getDurationInMinutes(),
-            		Config.NETWORKING_EVENT_MIN_START_TIME);
-            networkingSlot.addEvento(networkingEvent);
-            afternoonSlot.addSupplementSlot(networkingSlot);
-            Track track = new Track();
-            track.addSlot(morningSlot);
-            track.addSlot(lunchSlot);
-            track.addSlot(afternoonSlot);
-            conference.addTrack(track);
-        }
+		Conferencia conferencia = new Conferencia();
+		while (eventos.size() != 0) {
+			
+			Vaga sessaoManha = new Vaga(Config.SESSAO_MANHA, Config.HORARIO_INICIO_SESSAO_MANHA);
+			preencherSessaoComEventos(sessaoManha, eventos); 
+			
+			Vaga sessaoAlmoco = new Vaga(Config.HORARIO_ALMOCO, Config.HORARIO_INICIO_ALMOCO);
+			sessaoAlmoco.addEvento(new Evento("Lunch", Config.HORARIO_ALMOCO, Duracao.MINUTOS));
 
-        return conference;
-    }
-	
-	private static void fillSlotWithEvents(Vaga slot, List<Event> events) {
-        for (Iterator<Event> iter = events.iterator(); iter.hasNext();) {
-            Event event = iter.next();
-            if (slot.hasRoomFor(event)) {
-            	slot.addEvento(event);
-                iter.remove();
-            }
-        }
-    }
+			Vaga sessaoTarde = new Vaga(Config.SESSAO_TARDE, Config.HORARIO_INICIO_SESSAO_TARDE);
+			preencherSessaoComEventos(sessaoTarde, eventos);
+			
+			Evento networkingEvent = new Evento(Config.NETWORK_EVENT, Config.DURACA_NETWORK_EVENT,
+					Config.DURACAO_NETWORK_EVENT);
+			Vaga networkingSlot = new Vaga(networkingEvent.getDuracaoEmMinutos(),
+					Config.HORARIO_INICIO_NETWORK_EVENT);
+			
+			networkingSlot.addEvento(networkingEvent);
+			sessaoTarde.addVagaRestante(networkingSlot);
+			
+			Track track = new Track();
+			track.addSessao(sessaoManha);
+			track.addSessao(sessaoAlmoco);
+			track.addSessao(sessaoTarde);
+			conferencia.addTrack(track);
+		}
 
-    private static Event parseInputLine(String line) {
-        if (line.length() == 0) {
-            return null;
-        }
+		return conferencia;
+	}
 
-        Matcher match = Config.INPUT_LINE_PATTERN.matcher(line);
-        if (match.find() == false) {
-            logger.warn("Invalid input line: " + line);
-            return null;
-        }
+	private static void preencherSessaoComEventos(Vaga sessao, List<Evento> eventos) {
+		for (Iterator<Evento> iter = eventos.iterator(); iter.hasNext();) {
+			Evento evento = iter.next();
+			if (sessao.temVagaPara(evento)) {
+				sessao.addEvento(evento);
+				iter.remove();
+			}
+		}
+	}
 
-        Duracao unit;
-        if (match.group(Config.EVENT_DURATION_UNIT_INDEX).equalsIgnoreCase("min")) {
-            unit = Duracao.MINUTES;
-        } else {
-            unit = Duracao.LIGHTENING;
-        }
+	private static Evento parseInputLinha(String linha) {
+		if (linha.length() == 0) {
+			return null;
+		}
 
-        String name = match.group(Config.EVENT_NAME_INDEX);
-        String durationInString = match.group(Config.EVENT_DURATION_INDEX);
-        if (durationInString == null) {
-            durationInString = "1";
-        }
-        int duration = Integer.parseInt(durationInString);
+		Matcher match = Config.INPUT_LINHA_REGEX.matcher(linha);
+		if (match.find() == false) {
+			logger.warn("Linha inválida: " + linha);
+			return null;
+		}
 
-        Event event = new Event(name, duration, unit);
-        if (event.getDurationInMinutes() > Config.MAX_EVENT_DURATION) {
-            logger.warn("Duration of event '" + name + "' is more than the maximum duration"
-                    + " allowed for an event. Dropping this event for scheduling.");
-            return null;
-        }
+		Duracao unidade;
+		if (match.group(Config.UNIDADE_DO_EVENTO).equalsIgnoreCase("min")) {
+			unidade = Duracao.MINUTOS;
+		} else {
+			unidade = Duracao.LIGHTENING;
+		}
 
-        return event;
-    }
+		String nome = match.group(Config.NOME_DO_EVENTO);
+		String durationInString = match.group(Config.DURACAO_DO_EVENTO);
+		if (durationInString == null) {
+			durationInString = "1";
+		}
+		int duracao = Integer.parseInt(durationInString);
+
+		Evento event = new Evento(nome, duracao, unidade);
+		if (event.getDuracaoEmMinutos() > Config.MAX_EVENTO_DURACAO) {
+			logger.warn("O tempo do evento '" + nome + "' está acima do permitido.");
+			return null;
+		}
+
+		return event;
+	}
 
 }
