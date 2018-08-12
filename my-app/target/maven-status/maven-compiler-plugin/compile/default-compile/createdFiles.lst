@@ -1,12 +1,13 @@
 com\tw\app\ConferenciaAgenda.class
-com\tw\app\util\Logger.class
 com\tw\app\util\Constant.class
+com\tw\app\util\FileUtil.class
 com\tw\app\Conferencia.class
 com\tw\app\Track.class
 com\tw\app\Duracao.class
-com\tw\app\util\Logger$Level.class
 com\tw\app\util\Config.class
 com\tw\app\util\Time.class
 com\tw\app\Vaga.class
-com\tw\app\Event.class
 com\tw\app\App.class
+com\tw\app\util\Logger.class
+com\tw\app\util\Logger$Level.class
+com\tw\app\Event.class

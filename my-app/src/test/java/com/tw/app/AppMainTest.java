@@ -11,18 +11,18 @@ import com.tw.app.util.FileUtil;
 public class AppMainTest {
 	@Test
     public void testConferenceTrackManagementMultipleFullDayEvents() throws IOException {
-    	testConferenceTrackManagement("/input_file");
+    	testConferenceTrackManagement("/arquivo_de_input");
     }
 
-    @Test
-    public void testConferenceTrackManagementMultipleDayLessEvents() throws IOException {
-    	testConferenceTrackManagement("/input_file_less_events");
-    }
-
-    @Test
-    public void testConferenceTrackManagementSingleDayEvents() throws IOException {
-    	testConferenceTrackManagement("/input_file_single_day_events");
-    }
+//    @Test
+//    public void testConferenceTrackManagementMultipleDayLessEvents() throws IOException {
+//    	testConferenceTrackManagement("/input_file_less_events");
+//    }
+//
+//    @Test
+//    public void testConferenceTrackManagementSingleDayEvents() throws IOException {
+//    	testConferenceTrackManagement("/input_file_single_day_events");
+//    }
 
     private void testConferenceTrackManagement(String inputFile) throws IOException {
     	Conferencia conference = new ConferenciaAgenda().schedule(
@@ -32,7 +32,7 @@ public class AppMainTest {
     }
 
     private String getExpectedOutputFile(String inputFile) {
-    	return inputFile + "_expected";
+    	return inputFile + "_esperado";
     }
 
 }

@@ -34,7 +34,7 @@ public class App {
 					}
 					
 					if ("w".equals(input)) {
-						String fileName = "C:/Users/carlo/Desktop/TW/my-app-tw/my-app/src/main/resoucers/arquivo_de_input";
+						String fileName = "C:/Users/carlo/Desktop/TW/my-app-tw/my-app/src/test/resources/arquivo_de_input";
 						 BufferedReader reader = new BufferedReader(new FileReader(fileName));
 				            Conferencia conference = new ConferenciaAgenda().schedule(reader);
 				            logger.info(conference);
