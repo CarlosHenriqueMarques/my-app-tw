@@ -3,34 +3,36 @@ package com.tw.app;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 import org.junit.Test;
 
-import com.tw.app.utils.FileUtil;
+import com.tw.app.util.FileUtil;
 
 public class AppMainTest {
-	
 	@Test
-	public void testeLendoOCaminhoPerfeito() throws IOException{
-//		String fileName = "C:/Users/carlo/Desktop/TW/my-app-tw/my-app/src/main/resoucers/arquivo_esperado";
-//		
-//		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-//			stream.forEach(System.out::println);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		assertTrue(FileUtil.contentEquals("C:/Users/carlo/Desktop/TW/my-app-tw/my-app/src/main/resoucers/",
-//				"/arquivo_esperado", this));
-	}
-	
-	/*
-	 * assertTrue(FileUtil.contentEquals(getExpectedOutputFile(inputFile),
+    public void testConferenceTrackManagementMultipleFullDayEvents() throws IOException {
+    	testConferenceTrackManagement("/input_file");
+    }
+
+    @Test
+    public void testConferenceTrackManagementMultipleDayLessEvents() throws IOException {
+    	testConferenceTrackManagement("/input_file_less_events");
+    }
+
+    @Test
+    public void testConferenceTrackManagementSingleDayEvents() throws IOException {
+    	testConferenceTrackManagement("/input_file_single_day_events");
+    }
+
+    private void testConferenceTrackManagement(String inputFile) throws IOException {
+    	Conferencia conference = new ConferenciaAgenda().schedule(
+    			FileUtil.getBufferedReaderForResourceFile(inputFile, this));
+    	assertTrue(FileUtil.contentEquals(getExpectedOutputFile(inputFile),
     			conference.toString(), this));
-	 */
-	
+    }
+
+    private String getExpectedOutputFile(String inputFile) {
+    	return inputFile + "_expected";
+    }
+
 }

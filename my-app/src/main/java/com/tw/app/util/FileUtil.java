@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tw.app.utils;
+package com.tw.app.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
