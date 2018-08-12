@@ -25,7 +25,7 @@ public class AppMainTest {
 //    }
 
     private void testConferenceTrackManagement(String inputFile) throws IOException {
-    	Conferencia conference = new ConferenciaAgenda().schedule(
+    	Conferencia conference = new ConferenciaAgenda().agenda(
     			FileUtil.getBufferedReaderForResourceFile(inputFile, this));
     	assertTrue(FileUtil.contentEquals(getExpectedOutputFile(inputFile),
     			conference.toString(), this));

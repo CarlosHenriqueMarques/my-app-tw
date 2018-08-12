@@ -16,7 +16,7 @@ public class ConferenciaAgenda {
 
 	private static Logger logger = Logger.getLogger();
 
-	public Conferencia schedule(BufferedReader input) throws IOException {
+	public Conferencia agenda(BufferedReader input) throws IOException {
 		List<Evento> eventos = new ArrayList<Evento>();
 		for (String linha; (linha = input.readLine()) != null;) {
 			linha = linha.trim();
