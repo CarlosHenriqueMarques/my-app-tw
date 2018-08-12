@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import com.tw.app.util.Logger;
 
 /**
- * @author carlo
+ * @author carlos
  *
  */
 public class App {
@@ -21,28 +21,29 @@ public class App {
 
 		try {
 			while (true) {
-				System.out.println("Digite w para a leitura do arquivo certo : ");
+				System.out.println(
+						"Digite o caminho para o app ler o arquivo da conferência, por favor adicione o nome do arquivo sem extensão : ");
 				System.out.println("Digite q para sair : ");
 				String input = br.readLine();
-				System.out.println("-----------\n");
-				System.out.println("O comando que você digitou foi : " + input);
 				System.out.println("-----------\n");
 
 				if ("q".equals(input)) {
 					System.out.println("Você saiu, obrigado !!");
 					System.exit(0);
 				}
-
-				if ("w".equals(input)) {
-					String fileName = "C:/Users/carlo/Desktop/TW/my-app-tw/my-app/src/test/resources/arquivo_de_input";
-					BufferedReader reader = new BufferedReader(new FileReader(fileName));
+				
+				String fileName = input.toString();
+				BufferedReader reader = new BufferedReader(new FileReader(fileName));
+				
+				if(reader.readLine() == null){
+					System.out.println("Você solicitou a leitura de um arquivo vazio.");
+				}else{
 					Conferencia conference = new ConferenciaAgenda().agenda(reader);
 					logger.info(conference);
 				}
-
 			}
 		} catch (Exception e) {
-			logger.fatal("Ocorreu um erro" + e);
+			logger.fatal("Ocorreu um erro na digitação ou comando, por favor tente novamente.");
 			System.exit(1);
 		}
 	}
