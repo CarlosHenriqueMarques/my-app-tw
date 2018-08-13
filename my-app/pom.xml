@@ -27,7 +27,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.tw.app.App</mainClass>
+              <mainClass>com.tw.app.ConferenciaMain</mainClass>
             </manifest>
           </archive>
         </configuration>

@@ -7,6 +7,5 @@ com\tw\app\Duracao.class
 com\tw\app\util\Config.class
 com\tw\app\util\Time.class
 com\tw\app\Vaga.class
-com\tw\app\App.class
 com\tw\app\util\Logger.class
 com\tw\app\util\Logger$Level.class
