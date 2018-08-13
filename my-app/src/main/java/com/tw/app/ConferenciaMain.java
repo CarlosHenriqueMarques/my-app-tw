@@ -13,7 +13,7 @@ import com.tw.app.util.Logger;
  * @author carlos
  *
  */
-public class App {
+public class ConferenciaMain {
 
 	public static void main(String[] args) {
 		Logger logger = Logger.getLogger();

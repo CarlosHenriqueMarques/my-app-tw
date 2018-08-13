@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.tw.app.util.FileUtil;
 
-public class AppMainTest {
+public class ConferenciaMainTest {
 
 	public static String NOME_ARQUIVO_SUCESSO = "/arquivo_de_input";
 
@@ -30,20 +30,20 @@ public class AppMainTest {
 		assertTrue(FileUtil.contentEquals(NOME_ARQUIVO_ESPERANDO_SUCESSO, conferenciaTeste.toString(), this));
 	}
 	
-//	@Test
-//	public void testeSucessoArquivoDeUmDia() throws IOException {
-//		Conferencia conferenciaTeste = new ConferenciaAgenda()
-//				.agenda(FileUtil.getBufferedReaderForResourceFile(NOME_ARQUIVO_SO_PARA_UM_DIA, this));
-//
-//		assertTrue(FileUtil.contentEquals(NOME_ARQUIVO_SO_PARA_UM_DIA_ESPERADO_SUCESSO, conferenciaTeste.toString(), this));
-//	}
-//	
-//	@Test
-//	public void testeSucessoArquivoDeUmDiaEMeio() throws IOException {
-//		Conferencia conferenciaTeste = new ConferenciaAgenda()
-//				.agenda(FileUtil.getBufferedReaderForResourceFile(NOME_ARQUIVO_SO_PARA_UM_DIA_E_MEIO, this));
-//
-//		assertTrue(FileUtil.contentEquals(NOME_ARQUIVO_SO_PARA_UM_DIA_E_MEIO_ESPERADO_SUCESSO, conferenciaTeste.toString(), this));
-//	}
+	@Test
+	public void testeSucessoArquivoDeUmDia() throws IOException {
+		Conferencia conferenciaTeste = new ConferenciaAgenda()
+				.agenda(FileUtil.getBufferedReaderForResourceFile(NOME_ARQUIVO_SO_PARA_UM_DIA, this));
+
+		assertTrue(FileUtil.contentEquals(NOME_ARQUIVO_SO_PARA_UM_DIA_ESPERADO_SUCESSO, conferenciaTeste.toString(), this));
+	}
+	
+	@Test
+	public void testeSucessoArquivoDeUmDiaEMeio() throws IOException {
+		Conferencia conferenciaTeste = new ConferenciaAgenda()
+				.agenda(FileUtil.getBufferedReaderForResourceFile(NOME_ARQUIVO_SO_PARA_UM_DIA_E_MEIO, this));
+
+		assertTrue(FileUtil.contentEquals(NOME_ARQUIVO_SO_PARA_UM_DIA_E_MEIO_ESPERADO_SUCESSO, conferenciaTeste.toString(), this));
+	}
 
 }

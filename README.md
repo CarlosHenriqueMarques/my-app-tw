@@ -138,7 +138,9 @@ java -jar my-app-1.0-SNAPSHOT.jar
 
 **Como foi pensado**
 
-Para desenvolver o desafio eu separei inicialmente a solução em 'dominios' classes
+Para desenvolver este desafio técnico eu tentei por em prática o padrão de projeto S.O.L.I.D, visando facilitar a compreensão, manutenção do código e reuso do mesmo.
+
+Dentro do padrão SOLID eu dei uma atenção maior para o 'S' (Single Responsibility Principle) que é focada na responsabilidade única, sendo assim separei as classes da seguinte forma:
 
 - App
 
